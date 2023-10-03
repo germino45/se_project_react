@@ -1,10 +1,4 @@
-const ModalWithForm = ({
-  name,
-  title,
-  children,
-  buttonText = "Add Garment",
-  onClose,
-}) => {
+const ModalWithForm = ({ name, title, children, buttonText, onClose }) => {
   console.log("modalwithform");
 
   return (

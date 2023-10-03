@@ -1,4 +1,6 @@
 import "../blocks/Header.css";
+import logoImage from "../images/logo.svg";
+import avatarImage from "../images/avatar.svg";
 
 const Header = ({ onCreateModal }) => {
   console.log("Header");
@@ -11,7 +13,7 @@ const Header = ({ onCreateModal }) => {
   return (
     <header className="header">
       <div className="header__group">
-        <img src={require("../images/logo.svg").default} alt="logo" />
+        <img src={logoImage} alt="logo" />
         <div>{currentDate}, Chicago</div>
       </div>
       <div className="header__group">
@@ -19,7 +21,7 @@ const Header = ({ onCreateModal }) => {
           + Add clothes
         </button>
         <div>Terrence Tegegne</div>
-        <img src={require("../images/avatar.svg").default} alt="avatar" />
+        <img src={avatarImage} alt="avatar" />
       </div>
     </header>
   );
