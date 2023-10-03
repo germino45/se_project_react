@@ -1,0 +1,13 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  margin-left: 25px;
+}
+
+.cards__header {
+  margin-top: 40px;
+  margin-bottom: 34px;
+  font-size: 20px;
+  line-height: normal;
+}
