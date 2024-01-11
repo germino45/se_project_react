@@ -14,7 +14,7 @@ import {
 import PageNotFound from "./PageNotFound";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { getForecastWeather, parseWeatherData } from "../utils/weatherApi";
-import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { CurrentTempuratureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -95,7 +95,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <CurrentTempUnitContext.Provider
+        <CurrentTempuratureUnitContext.Provider
           value={{ currentTempUnit, handleToggleSwitchChange }}>
           <Header onCreateModal={handleCreateModal} />
           <Switch>
@@ -139,7 +139,7 @@ function App() {
               onCardDelete={handleCardDelete}
             />
           )}
-        </CurrentTempUnitContext.Provider>
+        </CurrentTempuratureUnitContext.Provider>
       </div>
     </BrowserRouter>
   );
