@@ -13,7 +13,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import PageNotFound from "./PageNotFound";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import { getForecastWeather, parseWeatherData } from "../utils/weatherApi";
+import { getForecastWeather, parseWeatherData } from "../utils/weatherApi.js";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
       })
+      .then(handleCloseModal)
       .catch((err) => {
         console.log(err);
       });

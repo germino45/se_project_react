@@ -92,13 +92,6 @@
       "id": "2fbe"
     },
     {
-      "_id": 14,
-      "name": "Sunglasses",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432",
-      "id": "d3e4"
-    },
-    {
       "_id": 15,
       "name": "Sweatshirt",
       "weather": "warm",
@@ -106,13 +99,7 @@
       "id": "7b79"
     },
     {
-      "id": "7f4f",
-      "name": "Trunks",
-      "weather": "hot",
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZcZQCj3kZev4EtPBc5CDSy5qySZVvsanXQ&usqp=CAU"
-    },
-    {
-      "id": "c45a",
+      "id": "8ce7",
       "name": "Snow Bib",
       "weather": "cold",
       "imageUrl": "https://products.blains.com/600/128/1281733.jpg"
