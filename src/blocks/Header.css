@@ -20,3 +20,10 @@
 
   font-weight: 700;
 }
+
+.header__profile-text {
+  border: none;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+}

@@ -1,15 +1,33 @@
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import ModalWithForm from "./ModalWithForm";
+import api from "../utils/api";
 import ItemModal from "./ItemModal";
+import Profile from "./Profile/Profile";
+import AddItemModal from "./AddItemModal";
 import { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from "react-router-dom/cjs/react-router-dom.min";
+import PageNotFound from "./PageNotFound";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { getForecastWeather, parseWeatherData } from "../utils/weatherApi";
+import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [clothingItems, setClothingItems] = useState([]);
   const [temp, setTemp] = useState(0);
+  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+
+  const handleToggleSwitchChange = () => {
+    currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
+  };
+
+  console.log(currentTempUnit);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -18,15 +36,44 @@ function App() {
     setActiveModal("");
   };
 
+  const handleAddItem = (item) => {
+    console.log(item);
+    api
+      .addItem(item)
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleCardDelete = () => {
+    api
+      .removeItem(selectedCard.id)
+      .then(() => {
+        setClothingItems((cards) =>
+          cards.filter((c) => c.id !== selectedCard.id)
+        );
+      })
+      .then(handleCloseModal)
+      .catch((err) => console.log(err));
+  };
+
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleDeleteModal = () => {
+    setActiveModal("delete");
   };
 
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
+        console.log(temperature);
         setTemp(temperature);
       })
       .catch((err) => {
@@ -34,74 +81,67 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    api
+      .getItemList()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div className="app">
-      <Header onCreateModal={handleCreateModal} />
-      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
-      <Footer />
-      {activeModal === "create" && (
-        <ModalWithForm
-          title="New Garment"
-          buttonText="Add garment"
-          onClose={handleCloseModal}
-          name="add-garment">
-          <label>
-            Name <br></br>
-            <input
-              className="form__input"
-              type="text"
-              name="name"
-              placeholder="Name"
-              minLength="1"></input>
-          </label>
-          <br></br>
-          <label>
-            Image <br></br>
-            <input
-              className="form__input"
-              type="url"
-              name="Image URL"
-              placeholder="Image URL"></input>
-          </label>
-          <p className="form__weather-list">Select weather type:</p>
-          <div>
-            <div>
-              <input
-                type="radio"
-                id="hot"
-                value="hot"
-                name="weather"
-                className="form__weather-selector"
+    <BrowserRouter>
+      <div className="app">
+        <CurrentTempUnitContext.Provider
+          value={{ currentTempUnit, handleToggleSwitchChange }}>
+          <Header onCreateModal={handleCreateModal} />
+          <Switch>
+            <Route exact path="/">
+              <Main
+                weatherTemp={temp}
+                onSelectCard={handleSelectedCard}
+                clothingItems={clothingItems}
               />
-              <label>Hot</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="warm"
-                value="warm"
-                name="weather"
-                className="form__weather-selector"
+            </Route>
+            <Route path="/profile">
+              <Profile
+                onSelectCard={handleSelectedCard}
+                onCreateModal={handleCreateModal}
+                clothingItems={clothingItems}
               />
-              <label>Warm</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="cold"
-                value="cold"
-                name="weather"
-                className="form__weather-selector"
-              />
-              <label>Cold</label>
-            </div>
-          </div>
-        </ModalWithForm>
-      )}
-      {activeModal === "preview" && (
-        <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
-      )}
-    </div>
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+          <Footer />
+          {activeModal === "create" && (
+            <AddItemModal
+              isOpen={activeModal === "create"}
+              onClose={handleCloseModal}
+              onAddItem={handleAddItem}
+            />
+          )}
+          {activeModal === "preview" && (
+            <ItemModal
+              selectedCard={selectedCard}
+              onClose={handleCloseModal}
+              onClick={handleDeleteModal}
+            />
+          )}
+          {activeModal === "delete" && (
+            <DeleteConfirmationModal
+              onClose={handleCloseModal}
+              onCancel={handleCloseModal}
+              onCardDelete={handleCardDelete}
+            />
+          )}
+        </CurrentTempUnitContext.Provider>
+      </div>
+    </BrowserRouter>
   );
 }
 

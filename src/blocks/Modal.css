@@ -36,6 +36,15 @@
   height: 610px;
 }
 
+.modal__content_type_delete {
+  display: flex;
+  position: relative;
+  max-width: 670px;
+  height: 280px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .modal__image {
   width: 100%;
   height: 498px;
@@ -43,6 +52,8 @@
 }
 
 .modal__close-btn {
+  background: transparent url(../images/close_btn_type_form.svg) center
+    no-repeat;
   position: absolute;
   border: none;
   width: 20px;
@@ -52,9 +63,30 @@
   cursor: pointer;
 }
 
-.modal__close-btn_type_form {
-  background: transparent url(../images/close_btn_type_form.svg) center
-    no-repeat;
+.modal__info {
+  display: grid;
+  grid-template-columns: (3, 1fr);
+  grid-auto-rows: minmax(10px, auto);
+  row-gap: 12px;
+  margin: 12px 32px 0 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.modal__delete-btn {
+  padding: 0;
+
+  text-align: end;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #ff4d00;
+  background: none;
+  border: none;
+  grid-column: 3;
+  grid-row: 1;
+  cursor: pointer;
 }
 
 .modal__close-btn_type_image {
@@ -62,6 +94,46 @@
     no-repeat;
 }
 
-.modal__image-text {
-  margin-left: 32px;
+.modal__image-text-one {
+  margin: 0;
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+
+.modal__image-text-two {
+  margin: 0;
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+.modal__delete-text {
+  margin: 0;
+  position: absolute;
+  top: 60px;
+  text-align: center;
+  width: 367px;
+  height: 48px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.modal__button {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.modal__delete-item-btn {
+  margin-top: 60px;
+  color: #ff4d00;
+}
+
+.modal__cancel-btn {
+  margin-top: 24px;
 }

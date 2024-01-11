@@ -1,0 +1,50 @@
+.profile {
+  display: flex;
+  padding-top: 63px;
+}
+
+.profile__sidebar {
+  display: flex;
+
+  height: 56px;
+}
+
+.profile__sidebar-picture {
+  margin-right: 16px;
+  width: 56px;
+  height: 56px;
+}
+
+.profile__sidebar-text {
+  padding-right: 116px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: 160px;
+}
+
+.profile__header {
+  display: flex;
+}
+
+.profile__header-text {
+  padding-left: 20px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.profile__add-clothes-button {
+  margin-left: 20px;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding: 0;
+}
