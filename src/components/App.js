@@ -3,7 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import api from "../utils/api";
 import ItemModal from "./ItemModal";
-import Profile from "./Profile/Profile";
+import Profile from "./Profile";
 import AddItemModal from "./AddItemModal";
 import { useState, useEffect } from "react";
 import {
@@ -14,7 +14,7 @@ import {
 import PageNotFound from "./PageNotFound";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { getForecastWeather, parseWeatherData } from "../utils/weatherApi";
-import { CurrentTempuratureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -24,10 +24,8 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
-    currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
+    setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
   };
-
-  console.log(currentTempUnit);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -37,7 +35,6 @@ function App() {
   };
 
   const handleAddItem = (item) => {
-    console.log(item);
     api
       .addItem(item)
       .then((newItem) => {
@@ -73,7 +70,7 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
-        console.log(temperature);
+
         setTemp(temperature);
       })
       .catch((err) => {
@@ -95,7 +92,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <CurrentTempuratureUnitContext.Provider
+        <CurrentTemperatureUnitContext.Provider
           value={{ currentTempUnit, handleToggleSwitchChange }}>
           <Header onCreateModal={handleCreateModal} />
           <Switch>
@@ -139,7 +136,7 @@ function App() {
               onCardDelete={handleCardDelete}
             />
           )}
-        </CurrentTempuratureUnitContext.Provider>
+        </CurrentTemperatureUnitContext.Provider>
       </div>
     </BrowserRouter>
   );

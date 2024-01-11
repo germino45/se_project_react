@@ -1,4 +1,4 @@
-import avatarImage from "../../images/avatar.svg";
+import avatarImage from "../images/avatar.svg";
 
 const SideBar = () => {
   return (

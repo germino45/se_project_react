@@ -1,7 +1,12 @@
 const baseUrl = "http://localhost:3001";
 
-const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+export const processServerResponse = (res) => {
+  console.log(res);
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
 };
 
 const getItemList = () => {
@@ -10,7 +15,7 @@ const getItemList = () => {
     headers: {
       "content-type": "application/json",
     },
-  }).then(handleServerResponse);
+  }).then(processServerResponse);
 };
 
 const addItem = ({ name, weather, imageUrl }) => {
@@ -24,7 +29,7 @@ const addItem = ({ name, weather, imageUrl }) => {
       weather,
       imageUrl,
     }),
-  }).then(handleServerResponse);
+  }).then(processServerResponse);
 };
 
 const removeItem = (id) => {
@@ -33,7 +38,7 @@ const removeItem = (id) => {
     headers: {
       "content-type": "application/json",
     },
-  }).then(handleServerResponse);
+  }).then(processServerResponse);
 };
 
 const api = {
