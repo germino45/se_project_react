@@ -32,8 +32,8 @@ const addItem = ({ name, weather, imageUrl }) => {
   }).then(processServerResponse);
 };
 
-const removeItem = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+const removeItem = (_id) => {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",

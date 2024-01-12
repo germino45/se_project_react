@@ -97,12 +97,6 @@
       "weather": "warm",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0",
       "id": "7b79"
-    },
-    {
-      "id": "8ce7",
-      "name": "Snow Bib",
-      "weather": "cold",
-      "imageUrl": "https://products.blains.com/600/128/1281733.jpg"
     }
   ]
 }

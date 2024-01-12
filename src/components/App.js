@@ -13,7 +13,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import PageNotFound from "./PageNotFound";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import { getForecastWeather, parseWeatherData } from "../utils/weatherApi.js";
+import { getForecastWeather, parseWeatherData } from "../utils/WeatherApi.js";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 function App() {
@@ -48,10 +48,10 @@ function App() {
 
   const handleCardDelete = () => {
     api
-      .removeItem(selectedCard.id)
+      .removeItem(selectedCard._id)
       .then(() => {
         setClothingItems((cards) =>
-          cards.filter((c) => c.id !== selectedCard.id)
+          cards.filter((c) => c._id !== selectedCard._id)
         );
       })
       .then(handleCloseModal)
