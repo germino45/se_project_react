@@ -20,4 +20,7 @@ https://germino45.github.io/se_project_react/
 
 ![](./src/images/WTWR%20Sreenshot%201.png)
 
-![](.src/WTWR_functionality_video.mp4)
+
+
+https://github.com/germino45/se_project_react/assets/114361293/64b50351-1938-4fe8-8a16-d18a00d27766
+
