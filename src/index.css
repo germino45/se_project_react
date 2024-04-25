@@ -4,6 +4,8 @@
 
 @import url(./blocks/App.css);
 
+@import url(./blocks/SideBar.css);
+
 @import url(./blocks/Card.css);
 
 @import url(./blocks/Cards.css);
