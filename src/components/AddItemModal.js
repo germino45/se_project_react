@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ModalWithForm from "./ModalWithForm";
 
 const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
@@ -25,18 +25,10 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     onAddItem({ name, imageUrl, weather });
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setName("");
-      setUrl("");
-      setWeather("");
-    }
-  }, [isOpen]);
-
   return (
     <ModalWithForm
       title="New Garment"
-      buttonText="Add garment"
+      buttonSubmitText="Add garment"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -58,7 +50,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
         <input
           className="form__input"
           type="url"
-          name="Image URL"
+          name="imageUrl"
           placeholder="Image URL"
           value={imageUrl}
           onChange={handleUrlChange}></input>

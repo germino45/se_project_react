@@ -3,9 +3,15 @@ import ItemCard from "./ItemCard";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
-const Main = ({ weatherTemp, onSelectCard, clothingItems }) => {
+const Main = ({
+  weatherTemp,
+  onSelectCard,
+  clothingItems,
+  onCardLike,
+  isLoggedIn,
+}) => {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTempUnit);
+
   const temp = weatherTemp?.temperature?.[currentTempUnit] || 85;
 
   const getWeatherType = () => {
@@ -17,7 +23,7 @@ const Main = ({ weatherTemp, onSelectCard, clothingItems }) => {
       } else if (temp <= 65) {
         return "cold";
       }
-    } else {
+    } else if (currentTempUnit === "C") {
       if (temp >= 30) {
         return "hot";
       } else if (temp >= 29 && temp <= 19) {
@@ -31,10 +37,9 @@ const Main = ({ weatherTemp, onSelectCard, clothingItems }) => {
 
   const weatherType = getWeatherType();
 
-  const filteredCards = clothingItems.filter((item) => {
-    return item.weather === weatherType;
+  const filteredCards = clothingItems.filter((data) => {
+    return data.weather === weatherType;
   });
-  console.log(filteredCards);
 
   return (
     <main className="main">
@@ -48,9 +53,17 @@ const Main = ({ weatherTemp, onSelectCard, clothingItems }) => {
           Today is {`${temp}°${currentTempUnit}`}, you may want to wear:
         </p>
         <div className="cards">
-          {filteredCards.map((card) => (
-            <ItemCard key={card._id} card={card} onSelectCard={onSelectCard} />
-          ))}
+          {filteredCards.map((card) => {
+            return (
+              <ItemCard
+                key={card._id}
+                card={card}
+                onSelectCard={onSelectCard}
+                onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+            );
+          })}
         </div>
       </section>
     </main>

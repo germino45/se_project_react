@@ -13,11 +13,39 @@
   cursor: pointer;
 }
 
-.card__text {
-  color: rgba(0, 0, 0, 0.6);
+.card__header {
+  display: flex;
   position: absolute;
   margin-top: 16px;
+  gap: 10px;
+}
+
+.card__text {
+  color: rgba(0, 0, 0, 0.6);
+
   border-radius: 4px;
   background: #fff;
   padding: 2px 12px;
+}
+
+.card__like-button {
+  width: 20px;
+  height: 18px;
+  border: none;
+  background: transparent url(../images/like_btn.svg) center no-repeat;
+  cursor: pointer;
+  margin-top: 2px;
+  padding: 0;
+  opacity: 100%;
+}
+
+.card__like-button_active {
+  background: transparent url(../images/like_btn_active.svg) center no-repeat;
+  width: 20px;
+  height: 18px;
+  border: none;
+  cursor: pointer;
+  margin-top: 2px;
+  padding: 0;
+  opacity: 100%;
 }

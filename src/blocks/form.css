@@ -23,17 +23,45 @@
   margin: 0;
 }
 
-.form__submit-btn {
-  width: 124px;
-  height: 36px;
-  margin-top: 34px;
+.form__button-group {
+  display: inline-block;
+  width: 178px;
+  height: 40px;
+  margin-top: 15px;
   margin-bottom: 0;
-  padding: 8px 16px;
+}
+
+.form__button-group_type_edit {
+  margin-top: 10px;
+}
+
+.form__submit-btn {
+  width: 86px;
+  height: 36px;
   border-radius: 4px;
   background: rgba(0, 0, 0);
   border: none;
   color: #fff;
   cursor: pointer;
+}
+
+.form__submit-btn_type_add-garment {
+  width: 124px;
+  margin-top: 25px;
+}
+
+.form__submit-btn_type_edit {
+  width: 128px;
+  height: 36px;
+}
+
+.form__redirect-btn {
+  width: 85px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 50%);
 }
 
 .form__weather-selector {

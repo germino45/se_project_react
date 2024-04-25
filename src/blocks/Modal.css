@@ -45,6 +45,22 @@
   align-items: center;
   flex-direction: column;
 }
+
+.modal__content_type_register {
+  max-width: 496px;
+  height: 456px;
+}
+
+.modal__content_type_login {
+  max-width: 496px;
+  height: 304px;
+}
+
+.modal__content_type_edit {
+  max-width: 496px;
+  height: 304px;
+}
+
 .modal__image {
   width: 100%;
   height: 498px;
@@ -74,7 +90,7 @@
   line-height: 24px;
 }
 
-.modal__delete-btn {
+.modal__delete-button {
   padding: 0;
 
   text-align: end;
@@ -87,6 +103,14 @@
   grid-column: 3;
   grid-row: 1;
   cursor: pointer;
+}
+
+.modal__delete-button_visible {
+  visibility: visible;
+}
+
+.modal__delete-button_invisible {
+  visibility: hidden;
 }
 
 .modal__close-btn_type_image {

@@ -3,13 +3,28 @@
   padding-top: 63px;
 }
 
+.profile__cards_visible {
+  visibility: visible;
+}
+
+.profile__cards_invisible {
+  display: none;
+}
+
 .profile__sidebar {
   display: flex;
+  flex-direction: column;
+  width: 229px;
+  height: 138px;
+}
 
-  height: 56px;
+.profile__sidebar-header {
+  display: flex;
+  flex-direction: row;
 }
 
 .profile__sidebar-picture {
+  border-radius: 50%;
   margin-right: 16px;
   width: 56px;
   height: 56px;
@@ -47,4 +62,26 @@
   font-weight: 700;
   line-height: normal;
   padding: 0;
+}
+
+.profile__sidebar-button-one {
+  cursor: pointer;
+  text-align: start;
+  background: none;
+  border: none;
+  width: 171px;
+  height: 25px;
+  font-weight: 700;
+  line-height: 24.8px;
+}
+
+.profile__sidebar-button-two {
+  cursor: pointer;
+  text-align: start;
+  background: none;
+  border: none;
+  width: 65px;
+  height: 25px;
+  font-weight: 700;
+  line-height: 24.8px;
 }

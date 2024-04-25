@@ -2,12 +2,12 @@ const ModalWithForm = ({
   name,
   title,
   children,
-  buttonText,
+  buttonSubmitText,
+  buttonRedirectText,
   onClose,
   onSubmit,
+  onRedirectClick,
 }) => {
-  console.log("modalwithform");
-
   return (
     <div className={`modal`}>
       <div className={`modal__content modal__content_type_${name}`}>
@@ -19,9 +19,20 @@ const ModalWithForm = ({
         <form className="form" onSubmit={onSubmit}>
           <fieldset className="form__fieldset">
             {children}
-            <button type="submit" className="form__submit-btn">
-              {buttonText}
-            </button>
+            <div
+              className={`form__button-group form__button-group_type_${name}`}>
+              <button
+                type="submit"
+                className={`form__submit-btn form__submit-btn_type_${name}`}>
+                {buttonSubmitText}
+              </button>
+              <button
+                type="button"
+                className="form__redirect-btn"
+                onClick={onRedirectClick}>
+                {buttonRedirectText}
+              </button>
+            </div>
           </fieldset>
         </form>
       </div>
