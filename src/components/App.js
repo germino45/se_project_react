@@ -26,13 +26,13 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [clothingItems, setClothingItems] = useState([]);
   const [temp, setTemp] = useState(0);
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
   const history = useHistory();
   const handleToggleSwitchChange = () => {
-    setCurrentTempUnit(currentTempUnit === "F" ? "C" : "F");
+    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
   const handleAddItem = (item) => {
@@ -211,7 +211,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <CurrentTemperatureUnitContext.Provider
-          value={{ currentTempUnit, handleToggleSwitchChange }}>
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
           <Header
             onCreateModal={handleCreateModal}
             onRegisterModal={handleRegisterModal}
