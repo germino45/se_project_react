@@ -43,11 +43,7 @@ const Main = ({
 
   return (
     <main className="main">
-      <WeatherCard
-        day={false}
-        type="cloudy"
-        weatherTemp={`${temp}°${currentTempUnit}`}
-      />
+      <WeatherCard day={false} type="cloudy" weatherTemp={`${temp}°`} />
       <section id="card-section" className="card__section">
         <p className="cards__header">
           Today is {`${temp}°${currentTempUnit}`}, you may want to wear:
