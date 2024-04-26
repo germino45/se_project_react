@@ -7,6 +7,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 const Header = ({
+  currentCity,
   onCreateModal,
   onLoginModal,
   onRegisterModal,
@@ -27,8 +28,9 @@ const Header = ({
         <Link to="/">
           <img src={logoImage} alt="logo" />
         </Link>
-
-        <div>{currentDate}, Chicago</div>
+        <div>
+          {currentDate}, {currentCity}
+        </div>
       </div>
       <div className="header__group">
         <ToggleSwitch />

@@ -8,14 +8,7 @@ export const signup = ({ email, password, name, avatar }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
-  })
-    .then((res) => res.json)
-    .then((data) => {
-      if (data.error) {
-        throw new Error(data.error);
-      }
-      console.log(data);
-    });
+  }).then(processServerResponse);
 };
 
 export const signin = ({ email, password }) => {

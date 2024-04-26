@@ -2,10 +2,7 @@ const DeleteConfirmationModal = ({ onClose, onCancel, onCardDelete }) => {
   return (
     <div className={"modal"}>
       <div className="modal__content modal__content_type_delete">
-        <button
-          type="button"
-          onClick={onClose}
-          className="modal__close-btn"></button>
+        <button type="button" onClick={onClose} className="modal__close-btn" />
         <p className="modal__delete-text">
           Are you sure you want to delete this item? this action is
           irreversible.

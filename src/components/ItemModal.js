@@ -16,8 +16,13 @@ const ItemModal = ({ selectedCard, onClose, onClick }) => {
         <button
           type="button"
           onClick={onClose}
-          className="modal__close-btn modal__close-btn_type_image"></button>
-        <img src={selectedCard.imageUrl} alt="item" className="modal__image" />
+          className="modal__close-btn modal__close-btn_type_image"
+        />
+        <img
+          src={selectedCard.imageUrl}
+          alt={selectedCard.name}
+          className="modal__image"
+        />
         <div className="modal__info">
           <p className="modal__image-text-one">{selectedCard.name}</p>
           <p className="modal__image-text-two">

@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-const LoginModal = ({ isOpen, onClose, onSubmitClick, onRedirectClick }) => {
+const LoginModal = ({
+  isOpen,
+  onClose,
+  onSubmitClick,
+  onRedirectClick,
+  buttonSubmitText,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -28,7 +34,7 @@ const LoginModal = ({ isOpen, onClose, onSubmitClick, onRedirectClick }) => {
   return (
     <ModalWithForm
       title="Log In"
-      buttonSubmitText="Log In"
+      buttonSubmitText={buttonSubmitText}
       buttonRedirectText="or Sign Up"
       onClose={onClose}
       isOpen={isOpen}

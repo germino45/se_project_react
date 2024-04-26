@@ -29,6 +29,8 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [currentCity, setCurrentCity] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
   const handleToggleSwitchChange = () => {
@@ -125,15 +127,21 @@ function App() {
   const handleEditProfileModal = () => {
     setActiveModal("edit");
   };
+
   /* ------------------------------ registration ------------------------------ */
   const handleRegistrationSubmit = (values) => {
     auth
       .signup(values)
-      .then((res) => {
+      .then(() => {
+        setIsLoading(true);
         handleLoginModal();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        handleLoginModal();
       });
   };
   /* ---------------------------------- login --------------------------------- */
@@ -148,12 +156,16 @@ function App() {
       })
       .then((userData) => {
         setCurrentUser(userData);
+        setIsLoading(true);
         setIsLoggedIn(true);
-        handleCloseModal();
         history.push("/profile");
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        handleCloseModal();
+        setIsLoading(false);
       });
   };
 
@@ -161,11 +173,15 @@ function App() {
     auth
       .updateProfile(getToken(), values)
       .then((userData) => {
+        setIsLoading(true);
         setCurrentUser(userData);
-        handleCloseModal();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        handleCloseModal();
       });
   };
 
@@ -181,6 +197,8 @@ function App() {
         const temperature = parseWeatherData(data);
 
         setTemp(temperature);
+        const currentCity = data.name;
+        setCurrentCity(currentCity);
       })
       .catch((err) => {
         console.log(err);
@@ -192,17 +210,46 @@ function App() {
     if (!jwt) {
       return;
     }
-    auth.getContent(jwt).then(({ name, avatar, email, _id }) => {
-      setCurrentUser({
-        name,
-        avatar,
-        email,
-        _id,
+    auth
+      .getContent(jwt)
+      .then(({ name, avatar, email, _id }) => {
+        setCurrentUser({
+          name,
+          avatar,
+          email,
+          _id,
+        });
+        setIsLoggedIn(true);
+        history.push("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setIsLoggedIn(true);
-      history.push("/profile");
-    });
   }, [history]);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    const handleOverlyClick = (e) => {
+      if (e.target.classList.contains("modal")) {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("mousedown", handleOverlyClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("mousedown", handleOverlyClick);
+    };
+  }, [activeModal]);
 
   //protect profile route
   //TODO: implement switcher for sign in/register modals
@@ -217,6 +264,7 @@ function App() {
             onRegisterModal={handleRegisterModal}
             onLoginModal={handleLoginModal}
             isLoggedIn={isLoggedIn}
+            currentCity={currentCity}
           />
           <Switch>
             <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
@@ -251,6 +299,7 @@ function App() {
               onSubmitClick={handleRegistrationSubmit}
               onRedirectClick={handleLoginModal}
               onClose={handleCloseModal}
+              buttonSubmitText={isLoading ? "Signing up..." : "Sign up"}
             />
           )}
           {activeModal === "login" && (
@@ -259,6 +308,7 @@ function App() {
               onClose={handleCloseModal}
               onRedirectClick={handleRegisterModal}
               onSubmitClick={handleLoginSubmit}
+              buttonSubmitText={isLoading ? "Logging in..." : "Log in"}
             />
           )}
           {activeModal === "create" && (
@@ -287,6 +337,7 @@ function App() {
               isOpen={activeModal === "edit"}
               onClose={handleCloseModal}
               onSubmitClick={handleUpdateProfileSubmit}
+              buttonSubmitText={isLoading ? "Saving..." : "Save"}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

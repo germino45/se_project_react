@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 
@@ -14,12 +12,9 @@ const Profile = ({
   handleLogOut,
   onCardLike,
 }) => {
-  const currentUser = useContext(CurrentUserContext);
-
   return (
     <div className="profile">
       <SideBar
-        currentUser={currentUser}
         onEditProfileModal={onEditProfileModal}
         handleLogOut={handleLogOut}
       />

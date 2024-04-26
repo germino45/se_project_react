@@ -11,10 +11,7 @@ const ModalWithForm = ({
   return (
     <div className={`modal`}>
       <div className={`modal__content modal__content_type_${name}`}>
-        <button
-          type="button"
-          onClick={onClose}
-          className="modal__close-btn"></button>
+        <button type="button" onClick={onClose} className="modal__close-btn" />
         <h3 className="modal__header">{title}</h3>
         <form className="form" onSubmit={onSubmit}>
           <fieldset className="form__fieldset">

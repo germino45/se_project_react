@@ -19,16 +19,18 @@ const ItemCard = ({ card, onSelectCard, onCardLike, isLoggedIn }) => {
     <div className="card">
       <img
         src={card.imageUrl}
-        alt="card"
+        alt={card.name}
         className="card__image"
-        onClick={() => onSelectCard(card)}></img>
+        onClick={() => onSelectCard(card)}
+      />
       <div className="card__header">
         <div className="card__text">{card.name}</div>
         {isLoggedIn ? (
           <button
             type="button"
             className={cardLikeButtonClassName}
-            onClick={handleCardLike}></button>
+            onClick={handleCardLike}
+          />
         ) : (
           <></>
         )}

@@ -2,16 +2,20 @@ import React, { useState } from "react";
 
 import ModalWithForm from "./ModalWithForm";
 
-const RegisterModal = ({ isOpen, onSubmitClick, onRedirectClick, onClose }) => {
+const RegisterModal = ({
+  isOpen,
+  onSubmitClick,
+  onRedirectClick,
+  onClose,
+  buttonSubmitText,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
@@ -46,7 +50,7 @@ const RegisterModal = ({ isOpen, onSubmitClick, onRedirectClick, onClose }) => {
   return (
     <ModalWithForm
       title="Sign Up"
-      buttonSubmitText="Sign Up"
+      buttonSubmitText={buttonSubmitText}
       buttonRedirectText=" or Log In"
       onClose={onClose}
       isOpen={isOpen}

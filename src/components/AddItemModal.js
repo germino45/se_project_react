@@ -66,7 +66,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             className="form__weather-selector"
             onChange={handleWeatherChange}
           />
-          <label>Hot</label>
+          <label htmlFor="hot">Hot</label>
         </div>
         <div>
           <input
@@ -77,7 +77,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             className="form__weather-selector"
             onChange={handleWeatherChange}
           />
-          <label>Warm</label>
+          <label htmlFor="warm">Warm</label>
         </div>
         <div>
           <input
@@ -88,7 +88,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             className="form__weather-selector"
             onChange={handleWeatherChange}
           />
-          <label>Cold</label>
+          <label htmlFor="cold">Cold</label>
         </div>
       </div>
     </ModalWithForm>
