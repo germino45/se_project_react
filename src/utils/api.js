@@ -1,4 +1,7 @@
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.elephantass.com"
+    : "http://localhost:3001";
 
 export const processServerResponse = (res) => {
   console.log(res);
